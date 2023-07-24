@@ -25,7 +25,6 @@ if __name__ == "__main__":
         #response = dbqa({'query': query})
         response = dbqa({'question': query, 'chat_history': chat_history})
         chat_history.append((query,response['answer']))
-        print(chat_history)
         end = timeit.default_timer() # End timer
 
         # Print document QA response
