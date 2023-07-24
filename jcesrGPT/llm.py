@@ -10,4 +10,4 @@ from langchain.llms import CTransformers
 
 # OpenAI API wrapper for GPT-3
 #llm = OpenAI(temperature=0, model_name='text-davinci-003')
-llm = ChatOpenAI(temperature=0., model_name='gpt-3.5-turbo-16k')
+llm = ChatOpenAI(temperature=0., model_name='gpt-3.5-turbo-16k-0613')
