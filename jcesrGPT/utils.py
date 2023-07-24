@@ -1,5 +1,5 @@
 from langchain import PromptTemplate
-from langchain.chains import RetrievalQA
+from langchain.chains import RetrievalQA, ConversationalRetrievalChain
 from langchain.vectorstores import Chroma, FAISS
 from langchain.embeddings import OpenAIEmbeddings, HuggingFaceEmbeddings
 from prompts import qa_template1, qa_template2
@@ -15,11 +15,16 @@ def set_qa_prompt(qa_template=qa_template1):
 
 # Build RetrievalQA object
 def build_retrieval_qa(llm, prompt, vectordb):
-    dbqa = RetrievalQA.from_chain_type(llm=llm,
+#    dbqa = RetrievalQA.from_chain_type(llm=llm,
+#                                       chain_type='stuff',
+#                                       retriever=vectordb.as_retriever(search_kwargs={'k': 3}),
+#                                       return_source_documents=True,
+#                                       chain_type_kwargs={'prompt': prompt})
+    
+    dbqa = ConversationalRetrievalChain.from_llm(llm=llm,
                                        chain_type='stuff',
-                                       retriever=vectordb.as_retriever(search_kwargs={'k': 3}),
-                                       return_source_documents=True,
-                                       chain_type_kwargs={'prompt': prompt})
+                                       retriever=vectordb.as_retriever(search_type='similarity', search_kwargs={'k': 3}),
+                                       return_source_documents=True)                                       
     return dbqa
 
 # Instantiate QA object

@@ -6,7 +6,8 @@ import sys
 
 if __name__ == "__main__":
     query = None
-    while True:
+    chat_history = []
+    while True:    
         if not query:
             query = input("Enter a question: ")
         if query in ['quit', 'q', 'exit']:
@@ -21,11 +22,14 @@ if __name__ == "__main__":
         
         # Parse input from argparse into QA object
         #response = dbqa({'query': args.input})
-        response = dbqa({'query': query})
+        #response = dbqa({'query': query})
+        response = dbqa({'question': query, 'chat_history': chat_history})
+        chat_history.append((query,response['answer']))
+        print(chat_history)
         end = timeit.default_timer() # End timer
 
         # Print document QA response
-        print(f'\nAnswer: {response["result"]}')
+        print(f'\nAnswer: {response["answer"]}') #result
         print('='*50) # Formatting separator
 
         # Process source documents for better display
