@@ -1,6 +1,6 @@
 from langchain.chat_models import ChatOpenAI
 from langchain.llms import OpenAI
-from langchain.llms import CTransformers
+#from langchain.llms import CTransformers
 
 # Local CTransformers wrapper for Llama-2-7B-Chat
 #llm = CTransformers(model='/Users/hadoan/apps/meta_llama/llama.cpp/models/7B-chat/ggml-model-7bchat-q4_0.bin', # Location of downloaded GGML model
